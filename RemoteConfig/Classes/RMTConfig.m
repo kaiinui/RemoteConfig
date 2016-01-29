@@ -8,6 +8,12 @@
 
 #import "RMTConfig.h"
 
+@interface RMTConfig (Internal)
+
++ (NSString *)stringForKey:(NSString *)key;
+
+@end
+
 NSString *RMTString(NSString *key, NSString *defaultValue) {
     NSString *val = [RMTConfig stringForKey:key];
     if (val == nil) {
@@ -56,9 +62,11 @@ static NSDictionary *mapCSVDataToDictionary(NSData *data) {
     return keyToValue.copy;
 }
 
-@interface RMTConfig ()
+NSString *const kRMTConfigConfigurationRetrievedNotification = @"RMTConfigConfigurationRetrievedNotification";
 
-@end
+static void postConfigurationRetrievedNotification() {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kRMTConfigConfigurationRetrievedNotification object:nil];
+}
 
 @implementation RMTConfig
 
@@ -105,6 +113,8 @@ static NSDictionary *mapCSVDataToDictionary(NSData *data) {
             [ud setObject:keyToValue[key] forKey:makeUserDefaultsKey(key)];
         }
         [ud synchronize];
+        
+        postConfigurationRetrievedNotification();
     }];
     [task resume];
 }

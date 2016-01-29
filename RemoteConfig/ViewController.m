@@ -25,6 +25,12 @@
     
     BOOL yesOrNo = RMTBool(@"hoges", NO);
     NSLog(@"%ld", yesOrNo);
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notification:) name:kRMTConfigConfigurationRetrievedNotification object:nil];
+}
+
+- (void)notification:(NSNotification *)notif {
+    NSLog(@"%@", [NSUserDefaults standardUserDefaults].dictionaryRepresentation);
 }
 
 - (void)didReceiveMemoryWarning {
