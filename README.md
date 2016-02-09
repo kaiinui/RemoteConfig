@@ -2,14 +2,20 @@
 
 Easy remote configuration for iOS with Google Spreadsheet.
 
+![](https://i.gyazo.com/be33a058ed64d3344a4a1895bf82c9d1.png)
+
 ```objc
 [RMTConfig startWithURL:@"https://docs.google.com/spreadsheets/d/1NanRTook1EeXpfIbVNR-tmGSo9h-2LSsdxJQE3n7NYM/pub?gid=0&single=true&output=csv"];
 
-// ...
+// Then,
 
-RMTString(@"SomeKey", @"SomeDefault"); // => @"SomeValue" from retrieved configuration
+RMTString(@"SomeKey", @"SomeDefault");
+  // => @"SomeValue" from retrieved configuration
 
-RMTInt(@"SomeNotFoundKey", 2); // => 2 from specified default value
+RMTInt(@"SomeNotFoundKey", 2);
+  // => 2 from specified default value
+
+// It caches retrieved value and refreshes them when calling every `- startWithURL:`.
 ```
 
 ## 1. Setup
@@ -20,9 +26,9 @@ Specify the URL to retrieve and initialize `RMTConfig` at the `-application:didF
 [RMTConfig startWithURL:@"https://docs.google.com/spreadsheets/d/1NanRTook1EeXpfIbVNR-tmGSo9h-2LSsdxJQE3n7NYM/pub?gid=0&single=true&output=csv"];
 ```
 
-## 2. Get Values
+## 2. Getting Values
 
-You can get values with simple static functions. They return specified default value when 1.`RMTConfig` has not retrieved the URL yet. 2.The value for key does not exist.
+You can get values with simple static functions. They return given default value when 1.`RMTConfig` has not retrieved the URL yet. 2.The value for key does not exist.
 
 ```objc
 RMTString(@"SomeKey", @"SomeDefault"); // => @"SomeValue" from retrieved configuration
@@ -32,13 +38,15 @@ RMTInt(@"SomeNotFoundKey", 2); // => 2 from specified default value
 RMTBool(@"FooBar", NO); // => YES from retrieved configuration
 ```
 
-You can simply use them with `if` statement.
+You can simply use them with `if` statement to work them more programmatically.
 
 ```objc
 if (RMTBool(@"ShouldDoSomething", NO)) {
     DoSomething();
 }
 ```
+
+It allows you to switch functions or do some tests without updating the app. Yay!
 
 ## 3. Editing Values
 
@@ -52,7 +60,7 @@ You should obtain and specify the **.csv** URL from spreadsheets. To obtain .csv
 
 Then you will obtain an URL as follows.
 
-`https://docs.google.com/spreadsheets/d/1NanRTook1EeXpfIbVNR-tmGSo9h-2LSsdxJQE3n7NYM/pub?gid=0&single=true&output=csv`
+`https://docs.google.com/spreadsheets/d/1NanRTook1EeXpfIbVNR-tmGSo9h-2LSsdxJQE3n7NYM/pub?output=csv`
 
 ## 4. Debugging
 
@@ -63,10 +71,14 @@ For debugging purpose, you can force returning value by calling simple api.
 // Do nothing while production build.
 [RMTConfig debug_forceValueForKey:@"SomeKey" withString:@"ForcedValue"];
 
-RMTString(@"SomeKey"); // => @"ForcedValue"
+RMTString(@"SomeKey");
+  // => @"ForcedValue"
+
+[RMTConfig debug_forceValueForKey:@"SomeBoolKey" withBool:YES];
+RMTBool(@"SomeBoolKey", NO); // => YES!
 ```
 
-You can see some useful logs while DEBUG. It does not emit any logs on production.
+For helping debug, `RMTConfig` emits some `NSLog`s while DEBUG.
 
 ### (Optional) Bring your own CSV
 
@@ -81,3 +93,7 @@ TheAnswerOfEveryThing, 42
 ## Use
 
 `pod "RMTConfig"`
+
+## Author
+
+kaiinui (https://kaiinui.com/, https://twitter.com/_kaiinui)
