@@ -54,6 +54,20 @@ Then you will obtain an URL as follows.
 
 `https://docs.google.com/spreadsheets/d/1NanRTook1EeXpfIbVNR-tmGSo9h-2LSsdxJQE3n7NYM/pub?gid=0&single=true&output=csv`
 
+## 4. Debugging
+
+For debugging purpose, you can force returning value by calling simple api.
+
+```objc
+// This method force `RMTString()` or related methods to return "ForcedValue"
+// Do nothing while production build.
+[RMTConfig debug_forceValueForKey:@"SomeKey" withString:@"ForcedValue"];
+
+RMTString(@"SomeKey"); // => @"ForcedValue"
+```
+
+You can see some useful logs while DEBUG. It does not emit any logs on production.
+
 ### (Optional) Bring your own CSV
 
 You can bring your own `.csv` URL. The format is as follows.
@@ -66,4 +80,4 @@ TheAnswerOfEveryThing, 42
 
 ## Use
 
-`pod "RemoteConfig"`
+`pod "RMTConfig"`

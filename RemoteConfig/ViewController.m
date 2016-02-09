@@ -18,13 +18,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [RMTConfig startWithURL:@"https://docs.google.com/spreadsheets/d/1NanRTook1EeXpfIbVNR-tmGSo9h-2LSsdxJQE3n7NYM/pub?gid=0&single=true&output=csv"];
+    [RMTConfig startWithURL:@"https://docs.google.com/spreadsheets/d/1NanRTook1EeXpfIbVNR-tmGSo9h-2LSsdxJQE3n7NYM/pub?output=csv"];
+    [RMTConfig debug_forceValueForKey:@"FooFoo" withString:@"Testing!"];
     
     NSInteger val = RMTInt(@"hoge", 2);
     NSLog(@"%ld", val + 2);
     
     BOOL yesOrNo = RMTBool(@"hoges", NO);
     NSLog(@"%ld", yesOrNo);
+    
+    NSLog(@"%@", RMTString(@"HogeHoge", @"whoa"));
+    NSLog(@"%@", RMTString(@"FooFoo", @"whoa"));
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notification:) name:kRMTConfigConfigurationRetrievedNotification object:nil];
 }

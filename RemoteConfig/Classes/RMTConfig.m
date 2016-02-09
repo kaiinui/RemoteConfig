@@ -8,15 +8,21 @@
 
 #import "RMTConfig.h"
 
-@interface RMTConfig (Internal)
+#define RMTLog(...) NSLog(@"RemoteConfig: %@", [NSString stringWithFormat:__VA_ARGS__]);
+
+@interface RMTConfig ()
 
 + (NSString *)stringForKey:(NSString *)key;
+
+@property (atomic) NSLock *debug_lockForForcingValues;
+@property (atomic) NSMutableDictionary *debug_forcingValues;
 
 @end
 
 NSString *RMTString(NSString *key, NSString *defaultValue) {
     NSString *val = [RMTConfig stringForKey:key];
     if (val == nil) {
+        RMTLog(@"Returning default value: %@ for key: %@", defaultValue, key);
         return defaultValue;
     }
     return val;
@@ -25,6 +31,7 @@ NSString *RMTString(NSString *key, NSString *defaultValue) {
 NSInteger RMTInt(NSString *key, NSInteger defaultInt) {
     NSString *val = [RMTConfig stringForKey:key];
     if (val == nil) {
+        RMTLog(@"Returning default value: %ld for key: %@", defaultInt, key);
         return defaultInt;
     }
     return [val integerValue];
@@ -33,16 +40,17 @@ NSInteger RMTInt(NSString *key, NSInteger defaultInt) {
 BOOL RMTBool(NSString *key, BOOL defaultBool) {
     NSString *val = [RMTConfig stringForKey:key];
     if (val == nil) {
+        RMTLog(@"Returning default value: %d for key: %@", defaultBool, key);
         return defaultBool;
     }
     return [val boolValue];
 }
 
-static NSString *makeUserDefaultsKey(NSString *key) {
+static NSString *RMTMakeUserDefaultsKey(NSString *key) {
     return [@"RMTConfig_" stringByAppendingString:key];
 }
 
-static NSDictionary *mapCSVDataToDictionary(NSData *data) {
+static NSDictionary *RMTMapCSVDataToDictionary(NSData *data) {
     NSMutableDictionary *keyToValue = [NSMutableDictionary dictionary];
     
     NSString *csv = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -56,6 +64,10 @@ static NSDictionary *mapCSVDataToDictionary(NSData *data) {
         NSString *key = columns[0];
         NSString *val = columns[1];
         
+        if (key == nil || val == nil) {
+            continue;
+        }
+        
         [keyToValue setObject:val forKey:key];
     }
     
@@ -68,7 +80,16 @@ static void postConfigurationRetrievedNotification() {
     [[NSNotificationCenter defaultCenter] postNotificationName:kRMTConfigConfigurationRetrievedNotification object:nil];
 }
 
+static NSURL *RMTAppendQueryStringToURL(NSURL *URL, NSString *queryString) {
+    NSString *urlStr = URL.absoluteString;
+    NSString *resStr = [NSString stringWithFormat:@"%@%@%@", urlStr, [urlStr rangeOfString:@"?"].length > 0 ? @"&" : @"?", queryString];
+    
+    return [NSURL URLWithString:resStr];
+}
+
 @implementation RMTConfig
+
+# pragma mark - Public API
 
 + (void)startWithURL:(NSString *)URL {
     RMTConfig *config = [self sharedInstance];
@@ -76,14 +97,52 @@ static void postConfigurationRetrievedNotification() {
 }
 
 + (NSString *)stringForKey:(NSString *)key {
-    return [[NSUserDefaults standardUserDefaults] stringForKey:makeUserDefaultsKey(key)];
+#ifdef DEBUG
+    RMTConfig *instance = [RMTConfig sharedInstance];
+    [instance.debug_lockForForcingValues lock];
+    NSString *forcingValue = [instance.debug_forcingValues objectForKey:key];
+    [instance.debug_lockForForcingValues unlock];
+    if (forcingValue != nil) {
+        RMTLog(@"Returning forced value: %@ for key: %@", forcingValue, key);
+        return forcingValue;
+    }
+#endif
+    
+    return [[NSUserDefaults standardUserDefaults] stringForKey:RMTMakeUserDefaultsKey(key)];
 }
+
+# pragma mark - Debugging API
+
++ (void)debug_forceValueForKey:(NSString *)key withString:(NSString *)aString {
+    NSParameterAssert(key);
+    NSParameterAssert(aString);
+    
+#ifdef DEBUG
+    RMTLog(@"RemoteConfig: Forcing value for key: '%@' with '%@'", key, aString);
+    RMTConfig *instance = [RMTConfig sharedInstance];
+    [instance.debug_lockForForcingValues lock];
+    [instance.debug_forcingValues setObject:aString forKey:key];
+    [instance.debug_lockForForcingValues unlock];
+#endif
+}
+
++ (void)debug_forceValueForKey:(NSString *)key withInt:(int)aInt {
+    [self debug_forceValueForKey:key withString:[NSString stringWithFormat:@"%d", aInt]];
+}
+
++ (void)debug_forceValueForKey:(NSString *)key withBool:(BOOL)aBool {
+    [self debug_forceValueForKey:key withInt:aBool];
+}
+
+# pragma mark - Internal
 
 + (instancetype)sharedInstance {
     static RMTConfig *_instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _instance = [[RMTConfig alloc] init];
+        _instance.debug_lockForForcingValues = [[NSLock alloc] init];
+        _instance.debug_forcingValues = [NSMutableDictionary dictionary];
     });
     return _instance;
 }
@@ -93,24 +152,29 @@ static void postConfigurationRetrievedNotification() {
 }
 
 - (void)fetchCSVFromURL:(NSURL *)URL {
-    NSURLSession *sessionForFetch = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    config.requestCachePolicy = NSURLRequestReloadIgnoringCacheData;
+    NSURLSession *sessionForFetch = [NSURLSession sessionWithConfiguration:config];
     
-    NSURLSessionDataTask *task = [sessionForFetch dataTaskWithURL:URL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSURL *urlToFetch = RMTAppendQueryStringToURL(URL, [NSString stringWithFormat:@"rand=%ld&verson=%@", (long)arc4random(), appVersion]);
+    NSURLSessionDataTask *task = [sessionForFetch dataTaskWithURL:urlToFetch completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         [sessionForFetch invalidateAndCancel];
         
         if (error != nil) {
-            NSLog(@"%@", error);
+            RMTLog(@"%@", error);
             return;
         }
         
-        NSDictionary *keyToValue = mapCSVDataToDictionary(data);
+        NSDictionary *keyToValue = RMTMapCSVDataToDictionary(data);
+        RMTLog(@"Receiving data: %@", keyToValue);
         NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
         
         for (NSString *key in keyToValue.allKeys) {
             if ([key rangeOfString:@"$"].location == 0) {
                 continue;
             }
-            [ud setObject:keyToValue[key] forKey:makeUserDefaultsKey(key)];
+            [ud setObject:keyToValue[key] forKey:RMTMakeUserDefaultsKey(key)];
         }
         [ud synchronize];
         

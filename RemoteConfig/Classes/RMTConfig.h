@@ -18,4 +18,15 @@ BOOL RMTBool(NSString *key, BOOL defaultBool);
 
 + (void)startWithURL:(NSString *)URL;
 
+/**
+ *  These method do nothing on production build.
+ *
+ *  Force the value for `key` as given value.
+ *
+ *  After calling this method, `RMTString(key, someDefault)` or related methods always return forced value during the session.
+ */
++ (void)debug_forceValueForKey:(NSString *)key withString:(NSString *)aString;
++ (void)debug_forceValueForKey:(NSString *)key withInt:(int)aInt;
++ (void)debug_forceValueForKey:(NSString *)key withBool:(BOOL)aBool;
+
 @end
