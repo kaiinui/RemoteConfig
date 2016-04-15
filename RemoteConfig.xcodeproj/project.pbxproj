@@ -430,6 +430,7 @@
 				D4A620C91C5B705600EEDEA6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D4A620CA1C5B705600EEDEA6 /* Build configuration list for PBXNativeTarget "RemoteConfigTests" */ = {
 			isa = XCConfigurationList;
@@ -438,6 +439,7 @@
 				D4A620CC1C5B705600EEDEA6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

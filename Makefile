@@ -34,4 +34,4 @@ podspec:
 
 # Push to the CocoaPods Specs Repo
 pod_push:
-	pod trunk push
+	pod trunk push --allow-warning

@@ -50,6 +50,13 @@ static NSString *RMTMakeUserDefaultsKey(NSString *key) {
     return [@"RMTConfig_" stringByAppendingString:key];
 }
 
+/**
+ *  @return `RMTConfig_v3.5.6=SomeKey`
+ */
+static NSString *RMTMakeUserDefaultsKeyWithVersion(NSString *key, NSString *version) {
+    return [NSString stringWithFormat:@"RMTConfig_v%@=%@", version, key];
+}
+
 static NSDictionary *RMTMapCSVDataToDictionary(NSData *data) {
     NSMutableDictionary *keyToValue = [NSMutableDictionary dictionary];
     
@@ -87,6 +94,13 @@ static NSURL *RMTAppendQueryStringToURL(NSURL *URL, NSString *queryString) {
     return [NSURL URLWithString:resStr];
 }
 
+/**
+ *  @return x.x.x style version
+ */
+static NSString *RMTGetAppVersion() {
+    return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+}
+
 @implementation RMTConfig
 
 # pragma mark - Public API
@@ -107,6 +121,12 @@ static NSURL *RMTAppendQueryStringToURL(NSURL *URL, NSString *queryString) {
         return forcingValue;
     }
 #endif
+    
+    NSString *appVersion = RMTGetAppVersion();
+    NSString *versionSpecificValue = [[NSUserDefaults standardUserDefaults] stringForKey:RMTMakeUserDefaultsKeyWithVersion(key, appVersion)];
+    if (versionSpecificValue != nil) {
+        return versionSpecificValue;
+    }
     
     return [[NSUserDefaults standardUserDefaults] stringForKey:RMTMakeUserDefaultsKey(key)];
 }
