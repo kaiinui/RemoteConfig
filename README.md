@@ -62,6 +62,18 @@ Then you will obtain an URL as follows.
 
 `https://docs.google.com/spreadsheets/d/1NanRTook1EeXpfIbVNR-tmGSo9h-2LSsdxJQE3n7NYM/pub?output=csv`
 
+### Version Specific Values
+
+You can set a value for key `v3.3.0=SomeKey` to overwrite a value for `SomeKey` in case of running app version is `v3.3.0`.
+
+You can use this feature as follows.
+
+```
+Message, Hello
+v1.0.0=Message, We introduced special features in this version!
+v2.0.0=Message, We introduced some incredible features in this version!
+```
+
 ## 4. Debugging
 
 For debugging purpose, you can force returning value by calling simple api.
