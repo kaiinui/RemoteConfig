@@ -87,6 +87,14 @@ static void postConfigurationRetrievedNotification() {
     [[NSNotificationCenter defaultCenter] postNotificationName:kRMTConfigConfigurationRetrievedNotification object:nil];
 }
 
+static void RMTRemoveVersionSpecifiedValuesFromUserDefaults(NSUserDefaults *ud) {
+    for (NSString *key in ud.dictionaryRepresentation.allKeys) {
+        if ([key rangeOfString:@"RMTConfig_v"].location == NSNotFound) { continue; }
+        
+        [ud removeObjectForKey:key];
+    }
+}
+
 static NSURL *RMTAppendQueryStringToURL(NSURL *URL, NSString *queryString) {
     NSString *urlStr = URL.absoluteString;
     NSString *resStr = [NSString stringWithFormat:@"%@%@%@", urlStr, [urlStr rangeOfString:@"?"].length > 0 ? @"&" : @"?", queryString];
@@ -125,6 +133,7 @@ static NSString *RMTGetAppVersion() {
     NSString *appVersion = RMTGetAppVersion();
     NSString *versionSpecificValue = [[NSUserDefaults standardUserDefaults] stringForKey:RMTMakeUserDefaultsKeyWithVersion(key, appVersion)];
     if (versionSpecificValue != nil) {
+        RMTLog(@"Returning version specific value: %@ for key: %@", versionSpecificValue, key);
         return versionSpecificValue;
     }
     
@@ -189,6 +198,10 @@ static NSString *RMTGetAppVersion() {
         NSDictionary *keyToValue = RMTMapCSVDataToDictionary(data);
         RMTLog(@"Receiving data: %@", keyToValue);
         NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+        
+        // `v4.6.0=SomeKey` を設定したのち `v4.6.0=SomeKey` を削除した場合、UserDefaultsには削除が反映されず結果としてv指定のあるものが優先されておかしな挙動になってしまう
+        // 毎回フェッチするたびにv指定のあるものは全て削除する。
+        RMTRemoveVersionSpecifiedValuesFromUserDefaults(ud);
         
         for (NSString *key in keyToValue.allKeys) {
             if ([key rangeOfString:@"$"].location == 0) {

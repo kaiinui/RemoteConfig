@@ -18,9 +18,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSUserDefaults standardUserDefaults] setObject:@"hoge" forKey:@"RMTConfig_v4.6.0=Hoge"];
+    
     [RMTConfig startWithURL:@"https://rmtconfig-dot-filmappapi.appspot.com/c/default"];
     
-    NSLog(@"%@", RMTString(@"GalleryPremiumBannerTitleString", @"whoa"));
+    NSLog(@"%@", RMTString(@"GalleryPremiumBannerTitleStrin", @"whoa"));
+    NSLog(@"%@", RMTString(@"SavedPhotoFreeupTitle", @"whoa"));
+    
+    NSLog(@"%@", [NSUserDefaults standardUserDefaults].dictionaryRepresentation);
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notification:) name:kRMTConfigConfigurationRetrievedNotification object:nil];
 }
