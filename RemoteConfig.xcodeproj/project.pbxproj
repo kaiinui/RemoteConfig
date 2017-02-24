@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D48C7BFE1E60062500C7C6E3 /* RMTConfig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D48C7BF51E60062400C7C6E3 /* RMTConfig.framework */; };
+		D48C7C051E60062500C7C6E3 /* RMTConfigTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D48C7C041E60062500C7C6E3 /* RMTConfigTests.m */; };
+		D48C7C071E60062500C7C6E3 /* RMTConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = D48C7BF71E60062400C7C6E3 /* RMTConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D48C7C0A1E60062500C7C6E3 /* RMTConfig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D48C7BF51E60062400C7C6E3 /* RMTConfig.framework */; };
+		D48C7C0B1E60062500C7C6E3 /* RMTConfig.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D48C7BF51E60062400C7C6E3 /* RMTConfig.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4A620AA1C5B705600EEDEA6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A620A91C5B705600EEDEA6 /* main.m */; };
 		D4A620AD1C5B705600EEDEA6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A620AC1C5B705600EEDEA6 /* AppDelegate.m */; };
 		D4A620B01C5B705600EEDEA6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A620AF1C5B705600EEDEA6 /* ViewController.m */; };
@@ -18,6 +23,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D48C7BFF1E60062500C7C6E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4A6209C1C5B705600EEDEA6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D48C7BF41E60062400C7C6E3;
+			remoteInfo = RMTConfig;
+		};
+		D48C7C011E60062500C7C6E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4A6209C1C5B705600EEDEA6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4A620A31C5B705600EEDEA6;
+			remoteInfo = RemoteConfig;
+		};
+		D48C7C081E60062500C7C6E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4A6209C1C5B705600EEDEA6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D48C7BF41E60062400C7C6E3;
+			remoteInfo = RMTConfig;
+		};
 		D4A620BE1C5B705600EEDEA6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D4A6209C1C5B705600EEDEA6 /* Project object */;
@@ -27,7 +53,27 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D48C7C111E60062500C7C6E3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D48C7C0B1E60062500C7C6E3 /* RMTConfig.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		D48C7BF51E60062400C7C6E3 /* RMTConfig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RMTConfig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D48C7BF71E60062400C7C6E3 /* RMTConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMTConfig.h; sourceTree = "<group>"; };
+		D48C7BF81E60062400C7C6E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D48C7BFD1E60062400C7C6E3 /* RMTConfigTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RMTConfigTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D48C7C041E60062500C7C6E3 /* RMTConfigTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMTConfigTests.m; sourceTree = "<group>"; };
+		D48C7C061E60062500C7C6E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4A620A41C5B705600EEDEA6 /* RemoteConfig.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RemoteConfig.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4A620A81C5B705600EEDEA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4A620A91C5B705600EEDEA6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -41,15 +87,31 @@
 		D4A620BD1C5B705600EEDEA6 /* RemoteConfigTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RemoteConfigTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4A620C21C5B705600EEDEA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4A620C31C5B705600EEDEA6 /* RemoteConfigTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemoteConfigTests.m; sourceTree = "<group>"; };
-		D4A620CE1C5B707600EEDEA6 /* RMTConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMTConfig.h; sourceTree = "<group>"; };
-		D4A620CF1C5B707600EEDEA6 /* RMTConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMTConfig.m; sourceTree = "<group>"; };
+		D4A620CE1C5B707600EEDEA6 /* RMTConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMTConfig.h; path = ../RemoteConfig/Classes/RMTConfig.h; sourceTree = "<group>"; };
+		D4A620CF1C5B707600EEDEA6 /* RMTConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMTConfig.m; path = ../RemoteConfig/Classes/RMTConfig.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D48C7BF11E60062400C7C6E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D48C7BFA1E60062400C7C6E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D48C7BFE1E60062500C7C6E3 /* RMTConfig.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4A620A11C5B705600EEDEA6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D48C7C0A1E60062500C7C6E3 /* RMTConfig.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,11 +125,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D48C7BF61E60062400C7C6E3 /* RMTConfig */ = {
+			isa = PBXGroup;
+			children = (
+				D4A620CE1C5B707600EEDEA6 /* RMTConfig.h */,
+				D4A620CF1C5B707600EEDEA6 /* RMTConfig.m */,
+				D48C7BF71E60062400C7C6E3 /* RMTConfig.h */,
+				D48C7BF81E60062400C7C6E3 /* Info.plist */,
+			);
+			path = RMTConfig;
+			sourceTree = "<group>";
+		};
+		D48C7C031E60062500C7C6E3 /* RMTConfigTests */ = {
+			isa = PBXGroup;
+			children = (
+				D48C7C041E60062500C7C6E3 /* RMTConfigTests.m */,
+				D48C7C061E60062500C7C6E3 /* Info.plist */,
+			);
+			path = RMTConfigTests;
+			sourceTree = "<group>";
+		};
 		D4A6209B1C5B705600EEDEA6 = {
 			isa = PBXGroup;
 			children = (
 				D4A620A61C5B705600EEDEA6 /* RemoteConfig */,
 				D4A620C01C5B705600EEDEA6 /* RemoteConfigTests */,
+				D48C7BF61E60062400C7C6E3 /* RMTConfig */,
+				D48C7C031E60062500C7C6E3 /* RMTConfigTests */,
 				D4A620A51C5B705600EEDEA6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,6 +161,8 @@
 			children = (
 				D4A620A41C5B705600EEDEA6 /* RemoteConfig.app */,
 				D4A620BD1C5B705600EEDEA6 /* RemoteConfigTests.xctest */,
+				D48C7BF51E60062400C7C6E3 /* RMTConfig.framework */,
+				D48C7BFD1E60062400C7C6E3 /* RMTConfigTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,15 +212,61 @@
 		D4A620CD1C5B706000EEDEA6 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				D4A620CE1C5B707600EEDEA6 /* RMTConfig.h */,
-				D4A620CF1C5B707600EEDEA6 /* RMTConfig.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		D48C7BF21E60062400C7C6E3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D48C7C071E60062500C7C6E3 /* RMTConfig.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		D48C7BF41E60062400C7C6E3 /* RMTConfig */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D48C7C101E60062500C7C6E3 /* Build configuration list for PBXNativeTarget "RMTConfig" */;
+			buildPhases = (
+				D48C7BF01E60062400C7C6E3 /* Sources */,
+				D48C7BF11E60062400C7C6E3 /* Frameworks */,
+				D48C7BF21E60062400C7C6E3 /* Headers */,
+				D48C7BF31E60062400C7C6E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RMTConfig;
+			productName = RMTConfig;
+			productReference = D48C7BF51E60062400C7C6E3 /* RMTConfig.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D48C7BFC1E60062400C7C6E3 /* RMTConfigTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D48C7C121E60062500C7C6E3 /* Build configuration list for PBXNativeTarget "RMTConfigTests" */;
+			buildPhases = (
+				D48C7BF91E60062400C7C6E3 /* Sources */,
+				D48C7BFA1E60062400C7C6E3 /* Frameworks */,
+				D48C7BFB1E60062400C7C6E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D48C7C001E60062500C7C6E3 /* PBXTargetDependency */,
+				D48C7C021E60062500C7C6E3 /* PBXTargetDependency */,
+			);
+			name = RMTConfigTests;
+			productName = RMTConfigTests;
+			productReference = D48C7BFD1E60062400C7C6E3 /* RMTConfigTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D4A620A31C5B705600EEDEA6 /* RemoteConfig */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4A620C71C5B705600EEDEA6 /* Build configuration list for PBXNativeTarget "RemoteConfig" */;
@@ -142,10 +274,12 @@
 				D4A620A01C5B705600EEDEA6 /* Sources */,
 				D4A620A11C5B705600EEDEA6 /* Frameworks */,
 				D4A620A21C5B705600EEDEA6 /* Resources */,
+				D48C7C111E60062500C7C6E3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D48C7C091E60062500C7C6E3 /* PBXTargetDependency */,
 			);
 			name = RemoteConfig;
 			productName = RemoteConfig;
@@ -179,6 +313,16 @@
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = kotori;
 				TargetAttributes = {
+					D48C7BF41E60062400C7C6E3 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					D48C7BFC1E60062400C7C6E3 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 73ULAJ38HQ;
+						ProvisioningStyle = Automatic;
+						TestTargetID = D4A620A31C5B705600EEDEA6;
+					};
 					D4A620A31C5B705600EEDEA6 = {
 						CreatedOnToolsVersion = 6.3.2;
 					};
@@ -203,11 +347,27 @@
 			targets = (
 				D4A620A31C5B705600EEDEA6 /* RemoteConfig */,
 				D4A620BC1C5B705600EEDEA6 /* RemoteConfigTests */,
+				D48C7BF41E60062400C7C6E3 /* RMTConfig */,
+				D48C7BFC1E60062400C7C6E3 /* RMTConfigTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D48C7BF31E60062400C7C6E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D48C7BFB1E60062400C7C6E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4A620A21C5B705600EEDEA6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -228,6 +388,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D48C7BF01E60062400C7C6E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D48C7BF91E60062400C7C6E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D48C7C051E60062500C7C6E3 /* RMTConfigTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4A620A01C5B705600EEDEA6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -250,6 +425,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D48C7C001E60062500C7C6E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D48C7BF41E60062400C7C6E3 /* RMTConfig */;
+			targetProxy = D48C7BFF1E60062500C7C6E3 /* PBXContainerItemProxy */;
+		};
+		D48C7C021E60062500C7C6E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4A620A31C5B705600EEDEA6 /* RemoteConfig */;
+			targetProxy = D48C7C011E60062500C7C6E3 /* PBXContainerItemProxy */;
+		};
+		D48C7C091E60062500C7C6E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D48C7BF41E60062400C7C6E3 /* RMTConfig */;
+			targetProxy = D48C7C081E60062500C7C6E3 /* PBXContainerItemProxy */;
+		};
 		D4A620BF1C5B705600EEDEA6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D4A620A31C5B705600EEDEA6 /* RemoteConfig */;
@@ -277,6 +467,96 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D48C7C0C1E60062500C7C6E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_TESTABILITY = YES;
+				INFOPLIST_FILE = RMTConfig/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = jp.picappinc.RMTConfig;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D48C7C0D1E60062500C7C6E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = RMTConfig/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = jp.picappinc.RMTConfig;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D48C7C0E1E60062500C7C6E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 73ULAJ38HQ;
+				ENABLE_TESTABILITY = YES;
+				INFOPLIST_FILE = RMTConfigTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = jp.picappinc.RMTConfigTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RemoteConfig.app/RemoteConfig";
+			};
+			name = Debug;
+		};
+		D48C7C0F1E60062500C7C6E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEVELOPMENT_TEAM = 73ULAJ38HQ;
+				INFOPLIST_FILE = RMTConfigTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = jp.picappinc.RMTConfigTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RemoteConfig.app/RemoteConfig";
+			};
+			name = Release;
+		};
 		D4A620C51C5B705600EEDEA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -414,6 +694,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D48C7C101E60062500C7C6E3 /* Build configuration list for PBXNativeTarget "RMTConfig" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D48C7C0C1E60062500C7C6E3 /* Debug */,
+				D48C7C0D1E60062500C7C6E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D48C7C121E60062500C7C6E3 /* Build configuration list for PBXNativeTarget "RMTConfigTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D48C7C0E1E60062500C7C6E3 /* Debug */,
+				D48C7C0F1E60062500C7C6E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		D4A6209F1C5B705600EEDEA6 /* Build configuration list for PBXProject "RemoteConfig" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
